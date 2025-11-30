@@ -9,7 +9,7 @@
 
     // Configuration
     const CONFIG = {
-        webhookUrl: 'https://expressions-part-fifth-oliver.trycloudflare.com/webhook/mad-discovery',
+        webhookUrl: 'https://wit-mandate-lane-kernel.trycloudflare.com/webhook/mad-discovery',
         submitTimeout: 30000 // 30 seconds
     };
 
