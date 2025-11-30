@@ -8,7 +8,7 @@
 
     // Configuration
     const CONFIG = {
-        webhookUrl: 'https://wit-mandate-lane-kernel.trycloudflare.com/webhook/mad-form',
+        webhookUrl: 'https://texas-automotive-helmet-track.trycloudflare.com/webhook/mad-form',
         submitTimeout: 30000 // 30 seconds
     };
 
