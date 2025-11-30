@@ -309,7 +309,7 @@
         if (result.success) {
             const athleteName = result.data.athleteName;
             const encodedName = encodeURIComponent(athleteName);
-            const discoveryLink = 'discovery-form.html?athlete=' + encodedName;
+            const discoveryLink = 'discovery.html?athlete=' + encodedName;
 
             // Show success with link to Discovery Form
             statusDiv.innerHTML =
