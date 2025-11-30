@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete Registration - Charnwood AC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Athlete Registration Form</h1>
+
+    <form id="registration-form" novalidate>
+        <!-- Athlete Details Section -->
+        <fieldset>
+            <legend>Athlete Details</legend>
+
+            <label for="athlete-first-name">First Name <span class="required">*</span></label>
+            <input type="text" id="athlete-first-name" name="athleteFirstName" required aria-required="true" maxlength="50" autocomplete="given-name">
+
+            <label for="athlete-last-name">Last Name <span class="required">*</span></label>
+            <input type="text" id="athlete-last-name" name="athleteLastName" required aria-required="true" maxlength="50" autocomplete="family-name">
+
+            <label for="athlete-dob">Date of Birth <span class="required">*</span></label>
+            <input type="date" id="athlete-dob" name="athleteDateOfBirth" required aria-required="true">
+
+            <label for="athlete-gender">Gender <span class="required">*</span></label>
+            <select id="athlete-gender" name="athleteGender" required aria-required="true">
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+
+            <label for="athlete-email">Athlete Email (optional)</label>
+            <input type="email" id="athlete-email" name="athleteEmail" maxlength="100" autocomplete="email">
+
+            <label for="athlete-phone">Athlete Phone (optional)</label>
+            <input type="tel" id="athlete-phone" name="athletePhone" maxlength="20" autocomplete="tel">
+        </fieldset>
+
+        <!-- Parent/Guardian Section -->
+        <fieldset>
+            <legend>Parent/Guardian</legend>
+
+            <p class="section-note">As the athlete is under 16, a parent or guardian must complete this section.</p>
+
+            <label for="parent-first-name">First Name <span class="required">*</span></label>
+            <input type="text" id="parent-first-name" name="parentFirstName" required aria-required="true" maxlength="50" autocomplete="given-name">
+
+            <label for="parent-last-name">Last Name <span class="required">*</span></label>
+            <input type="text" id="parent-last-name" name="parentLastName" required aria-required="true" maxlength="50" autocomplete="family-name">
+
+            <label for="parent-relationship">Relationship to Athlete <span class="required">*</span></label>
+            <select id="parent-relationship" name="parentRelationship" required aria-required="true">
+                <option value="">Select relationship</option>
+                <option value="mother">Mother</option>
+                <option value="father">Father</option>
+                <option value="guardian">Guardian</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="parent-email">Email Address <span class="required">*</span></label>
+            <input type="email" id="parent-email" name="parentEmail" required aria-required="true" maxlength="100" autocomplete="email">
+
+            <label for="parent-phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="parent-phone" name="parentPhone" required aria-required="true" maxlength="20" autocomplete="tel">
+        </fieldset>
+
+        <!-- Emergency Contact Section -->
+        <fieldset>
+            <legend>Emergency Contact</legend>
+
+            <p class="section-note">Please provide an alternative contact in case of emergency.</p>
+
+            <label for="emergency-name">Contact Name <span class="required">*</span></label>
+            <input type="text" id="emergency-name" name="emergencyName" required aria-required="true" maxlength="100">
+
+            <label for="emergency-phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="emergency-phone" name="emergencyPhone" required aria-required="true" maxlength="20" autocomplete="tel">
+        </fieldset>
+
+        <!-- Consent Section -->
+        <fieldset>
+            <legend>Consent and Privacy</legend>
+
+            <p class="section-note">Please read our <a href="#" id="privacy-notice-link" target="_blank">Privacy Notice</a> before submitting this form.</p>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent-privacy" name="consentPrivacy" required aria-required="true">
+                <label for="consent-privacy">I have read and understood the Privacy Notice <span class="required">*</span></label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent-data" name="consentData" required aria-required="true">
+                <label for="consent-data">I consent to the collection and processing of data as described in the Privacy Notice <span class="required">*</span></label>
+            </div>
+
+            <p class="guardian-statement">By submitting this form, I confirm that I am the parent or legal guardian of the athlete named above and have authority to provide this consent on their behalf.</p>
+        </fieldset>
+
+        <button type="submit">Submit Registration</button>
+
+        <div id="form-status" role="status" aria-live="polite" class="form-status"></div>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

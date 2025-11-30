@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete Discovery Form - Charnwood AC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Athlete Discovery Form</h1>
+
+    <div id="athlete-identification" class="athlete-banner">
+        <p>Completing discovery for: <strong id="athlete-name-display">Loading...</strong></p>
+    </div>
+
+    <form id="discovery-form" novalidate>
+        <!-- Hidden field for athlete identification -->
+        <input type="hidden" id="athlete-name" name="athleteName" required>
+
+        <!-- Section 2: Training Background -->
+        <fieldset>
+            <legend>Training Background</legend>
+
+            <label for="training-years-total">Years in Athletics (total) <span class="required">*</span></label>
+            <input type="number" id="training-years-total" name="trainingYearsTotal" required aria-required="true" min="0" max="20" step="1">
+
+            <label for="training-years-coach">Years with Current Coach</label>
+            <input type="number" id="training-years-coach" name="trainingYearsCoach" min="0" max="20" step="1">
+
+            <label for="sessions-per-week">Training Sessions per Week <span class="required">*</span></label>
+            <input type="number" id="sessions-per-week" name="sessionsPerWeek" required aria-required="true" min="0" max="14" step="1">
+
+            <label for="training-group">Training Group <span class="required">*</span></label>
+            <select id="training-group" name="trainingGroup" required aria-required="true">
+                <option value="">Select training group</option>
+                <option value="U11 Development">U11 Development</option>
+                <option value="U13 Development">U13 Development</option>
+                <option value="U13 Endurance">U13 Endurance</option>
+                <option value="U15 Development">U15 Development</option>
+                <option value="U15 Endurance">U15 Endurance</option>
+                <option value="U17 Endurance">U17 Endurance</option>
+                <option value="U20 Endurance">U20 Endurance</option>
+                <option value="Senior Endurance">Senior Endurance</option>
+            </select>
+
+            <label for="previous-sports">Previous Sports/Activities</label>
+            <textarea id="previous-sports" name="previousSports" rows="3" placeholder="List any sports or activities before athletics, with approximate ages"></textarea>
+        </fieldset>
+
+        <!-- Section 3: Events & Goals -->
+        <fieldset>
+            <legend>Events &amp; Goals</legend>
+
+            <label for="current-events">Current Events</label>
+            <textarea id="current-events" name="currentEvents" rows="2" placeholder="e.g., 800m, 1500m, Cross Country"></textarea>
+
+            <label for="goals-short-term">Short-term Goals (this season) <span class="required">*</span></label>
+            <textarea id="goals-short-term" name="goalsShortTerm" required aria-required="true" rows="2" placeholder="What do you want to achieve this season?"></textarea>
+
+            <label for="goals-medium-term">Medium-term Goals (1-2 years)</label>
+            <textarea id="goals-medium-term" name="goalsMediumTerm" rows="2" placeholder="Where do you see yourself in 1-2 years?"></textarea>
+
+            <label for="goals-long-term">Long-term Aspirations</label>
+            <textarea id="goals-long-term" name="goalsLongTerm" rows="2" placeholder="What are your ultimate athletics dreams?"></textarea>
+
+            <label for="motivation">Why do you do athletics?</label>
+            <textarea id="motivation" name="motivation" rows="2" placeholder="What motivates you to train and compete?"></textarea>
+        </fieldset>
+
+        <!-- Section 4: Growth & Development -->
+        <fieldset>
+            <legend>Growth &amp; Development</legend>
+
+            <p class="section-note">This information helps us monitor maturation and adjust training appropriately.</p>
+
+            <label for="height">Current Height (cm) <span class="required">*</span></label>
+            <input type="number" id="height" name="height" required aria-required="true" min="50" max="250" step="0.1" placeholder="e.g., 165">
+
+            <label for="weight">Current Weight (kg)</label>
+            <input type="number" id="weight" name="weight" min="10" max="150" step="0.1" placeholder="e.g., 52">
+
+            <label for="mother-height">Mother's Height (cm)</label>
+            <input type="number" id="mother-height" name="motherHeight" min="100" max="220" step="0.1" placeholder="Helps estimate adult height">
+
+            <label for="father-height">Father's Height (cm)</label>
+            <input type="number" id="father-height" name="fatherHeight" min="100" max="250" step="0.1" placeholder="Helps estimate adult height">
+        </fieldset>
+
+        <!-- Section 5: Health & Injury -->
+        <fieldset>
+            <legend>Health &amp; Injury</legend>
+
+            <label for="injury-history">Injury History</label>
+            <textarea id="injury-history" name="injuryHistory" rows="3" placeholder="List any previous injuries, time out, and any ongoing issues"></textarea>
+
+            <label for="medical-conditions">Medical Conditions</label>
+            <textarea id="medical-conditions" name="medicalConditions" rows="2" placeholder="e.g., Asthma, allergies, medications"></textarea>
+
+            <label for="dietary-requirements">Dietary Requirements</label>
+            <textarea id="dietary-requirements" name="dietaryRequirements" rows="2" placeholder="e.g., Vegetarian, food allergies, intolerances"></textarea>
+        </fieldset>
+
+        <!-- Section 6: Lifestyle & Commitments -->
+        <fieldset>
+            <legend>Lifestyle &amp; Commitments</legend>
+
+            <label for="school">School <span class="required">*</span></label>
+            <input type="text" id="school" name="school" required aria-required="true" maxlength="100" placeholder="School name">
+
+            <label for="year-group">Year Group <span class="required">*</span></label>
+            <select id="year-group" name="yearGroup" required aria-required="true">
+                <option value="">Select year group</option>
+                <option value="Year 5">Year 5</option>
+                <option value="Year 6">Year 6</option>
+                <option value="Year 7">Year 7</option>
+                <option value="Year 8">Year 8</option>
+                <option value="Year 9">Year 9</option>
+                <option value="Year 10">Year 10</option>
+                <option value="Year 11">Year 11</option>
+                <option value="Year 12">Year 12</option>
+                <option value="Year 13">Year 13</option>
+                <option value="Left School">Left School</option>
+            </select>
+
+            <label for="school-sports">School Sport Commitments</label>
+            <textarea id="school-sports" name="schoolSports" rows="2" placeholder="Any school teams or PE commitments that affect training"></textarea>
+
+            <label for="other-activities">Other Regular Activities</label>
+            <textarea id="other-activities" name="otherActivities" rows="2" placeholder="Music, clubs, part-time job, etc."></textarea>
+        </fieldset>
+
+        <!-- Section 7: Family & Support -->
+        <fieldset>
+            <legend>Family &amp; Support</legend>
+
+            <label for="lives-with">Lives With</label>
+            <input type="text" id="lives-with" name="livesWith" maxlength="100" placeholder="e.g., Both parents, Mum, Dad and stepmum">
+
+            <label for="siblings">Siblings (ages)</label>
+            <input type="text" id="siblings" name="siblings" maxlength="100" placeholder="e.g., Brother (14), Sister (10)">
+
+            <label for="parent-involvement">Parent/Guardian Involvement Level</label>
+            <select id="parent-involvement" name="parentInvolvement">
+                <option value="">Select involvement level</option>
+                <option value="High">High - Very involved in training/competitions</option>
+                <option value="Medium">Medium - Supportive, attends some events</option>
+                <option value="Low">Low - Minimal involvement</option>
+            </select>
+
+            <label for="communication-preference">Preferred Contact Method</label>
+            <select id="communication-preference" name="communicationPreference">
+                <option value="">Select preference</option>
+                <option value="Email">Email</option>
+                <option value="Phone">Phone call</option>
+                <option value="Text">Text message</option>
+                <option value="WhatsApp">WhatsApp</option>
+            </select>
+        </fieldset>
+
+        <!-- Section 8: Facilities & Logistics -->
+        <fieldset>
+            <legend>Facilities &amp; Logistics</legend>
+
+            <label for="travel-to-training">How do they get to training?</label>
+            <input type="text" id="travel-to-training" name="travelToTraining" maxlength="100" placeholder="e.g., Parent drives, cycles, walks">
+
+            <label for="travel-time">Typical travel time to training (minutes)</label>
+            <input type="number" id="travel-time" name="travelTime" min="0" max="120" placeholder="e.g., 20">
+
+            <label for="facility-access">Facility Access</label>
+            <textarea id="facility-access" name="facilityAccess" rows="2" placeholder="Access to track, gym, pool, local parks for training"></textarea>
+
+            <label for="competition-travel">Can attend away competitions?</label>
+            <select id="competition-travel" name="competitionTravel">
+                <option value="">Select availability</option>
+                <option value="Yes">Yes - Most competitions</option>
+                <option value="Sometimes">Sometimes - Depends on location/timing</option>
+                <option value="Rarely">Rarely - Transport/cost constraints</option>
+            </select>
+        </fieldset>
+
+        <!-- Section 9: Annual Calendar (Optional) -->
+        <fieldset>
+            <legend>Annual Calendar (Optional)</legend>
+
+            <p class="section-note">Help us plan around your commitments. You can update this later.</p>
+
+            <label for="known-absences">Known Absences This Year</label>
+            <textarea id="known-absences" name="knownAbsences" rows="3" placeholder="Family holidays, school trips, exam periods - include approximate dates if known"></textarea>
+
+            <label for="exam-periods">Key Exam Periods</label>
+            <input type="text" id="exam-periods" name="examPeriods" maxlength="200" placeholder="e.g., GCSEs May-June 2025">
+        </fieldset>
+
+        <!-- Consent Section (FEAT-015) -->
+        <fieldset id="consent-section">
+            <legend>Consent and Privacy</legend>
+
+            <p class="section-note">
+                Please read our <a href="https://example.com/privacy-notice" id="privacy-notice-link" target="_blank" rel="noopener">Privacy Notice</a>
+                before submitting this form.
+            </p>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent-privacy" name="consentPrivacy" required aria-required="true">
+                <label for="consent-privacy">
+                    I have read and understood the Privacy Notice <span class="required">*</span>
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent-data" name="consentData" required aria-required="true">
+                <label for="consent-data">
+                    I consent to the collection and processing of all information provided during registration
+                    and this discovery form for the purpose of athlete coaching and development.
+                    I understand I can withdraw this consent at any time by contacting the coach.
+                    <span class="required">*</span>
+                </label>
+            </div>
+
+            <p class="guardian-statement">
+                By submitting this form, I confirm I am the parent or legal guardian of the athlete
+                named above and have authority to provide this consent on their behalf.
+            </p>
+
+            <p class="contact-info">
+                Questions? Contact <a href="mailto:coach@charnwoodac.org.uk">coach@charnwoodac.org.uk</a>
+            </p>
+        </fieldset>
+
+        <button type="submit" id="submit-btn" disabled>Submit Discovery Form</button>
+
+        <div id="form-status" role="status" aria-live="polite" class="form-status"></div>
+    </form>
+
+    <script src="discovery-script.js"></script>
+</body>
+</html>
