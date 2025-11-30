@@ -8,7 +8,7 @@
 
     // Configuration
     const CONFIG = {
-        webhookUrl: 'http://localhost:5678/webhook/mad-form',
+        webhookUrl: 'https://expressions-part-fifth-oliver.trycloudflare.com/webhook/mad-form',
         submitTimeout: 30000 // 30 seconds
     };
 

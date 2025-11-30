@@ -9,7 +9,7 @@
 
     // Configuration
     const CONFIG = {
-        webhookUrl: 'http://localhost:5678/webhook/mad-discovery',
+        webhookUrl: 'https://expressions-part-fifth-oliver.trycloudflare.com/webhook/mad-discovery',
         submitTimeout: 30000 // 30 seconds
     };
 
