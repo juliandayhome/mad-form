@@ -1,58 +1,158 @@
 /* MAD - Mobile Athlete Data Collection
  * Responsive styles for registration form
+ * Light/Dark theme support with ATA brand colours
  */
 
-/* Base reset and typography */
+/* ============================================
+   CSS CUSTOM PROPERTIES (Theme Variables)
+   ============================================ */
+
+/* Light Theme (Default) */
+:root {
+  /* Background colours */
+  --color-bg-page: #FFFFFF;
+  --color-bg-surface: #F4F6F8;
+  --color-bg-muted: #f9f9f9;
+
+  /* Text colours */
+  --color-text-main: #131B1E;
+  --color-text-secondary: #555555;
+  --color-text-muted: #666666;
+
+  /* Primary brand (ATA Teal) */
+  --color-primary: #44BBB7;
+  --color-primary-hover: #3AA5A1;
+  --color-primary-foreground: #FFFFFF;
+
+  /* Semantic colours */
+  --color-error: #cc0000;
+  --color-success: #155724;
+  --color-success-bg: #d4edda;
+  --color-success-border: #c3e6cb;
+  --color-info: #004085;
+  --color-info-bg: #cce5ff;
+  --color-info-border: #b8daff;
+  --color-error-bg: #f8d7da;
+  --color-error-border: #f5c6cb;
+
+  /* Border colours */
+  --color-border: #cccccc;
+  --color-border-light: #dddddd;
+  --color-border-focus: var(--color-primary);
+
+  /* Focus state */
+  --color-focus-ring: var(--color-primary);
+
+  /* Shadows */
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+/* Dark Theme Override */
+[data-theme='dark'] {
+  /* Background colours */
+  --color-bg-page: #131B1E;
+  --color-bg-surface: #1C2629;
+  --color-bg-muted: #232d31;
+
+  /* Text colours */
+  --color-text-main: #FFFFFF;
+  --color-text-secondary: #A6A9AA;
+  --color-text-muted: #888D8F;
+
+  /* Primary brand (lighter teal for dark bg) */
+  --color-primary: #44BBB7;
+  --color-primary-hover: #5FCFCB;
+
+  /* Semantic colours (adjusted for dark bg) */
+  --color-success: #90EE90;
+  --color-success-bg: #1a3d1a;
+  --color-success-border: #2d5a2d;
+  --color-info: #87CEEB;
+  --color-info-bg: #1a2d3d;
+  --color-info-border: #2d4a5a;
+  --color-error: #ff6b6b;
+  --color-error-bg: #3d1a1a;
+  --color-error-border: #5a2d2d;
+
+  /* Border colours */
+  --color-border: #3a4245;
+  --color-border-light: #4a5255;
+
+  /* Shadows */
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   BASE RESET AND TYPOGRAPHY
+   ============================================ */
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #f5f5f5;
-    padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-page);
+  padding: var(--spacing-md);
 }
 
 h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-main);
 }
 
-/* Form layout */
+/* ============================================
+   FORM LAYOUT
+   ============================================ */
+
 form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-bg-surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
 }
 
 fieldset {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 legend {
-    font-weight: 600;
-    padding: 0 0.5rem;
-    color: #1a1a1a;
+  font-weight: 600;
+  padding: 0 var(--spacing-sm);
+  color: var(--color-text-main);
 }
 
-/* Form controls */
+/* ============================================
+   FORM CONTROLS
+   ============================================ */
+
 label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
-    font-weight: 500;
+  display: block;
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--color-text-main);
 }
 
 input[type="text"],
@@ -61,244 +161,290 @@ input[type="tel"],
 input[type="date"],
 select,
 textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-surface);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 2px solid #0066cc;
-    outline-offset: 2px;
-    border-color: #0066cc;
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-color: var(--color-border-focus);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }
 
 /* Checkbox styling */
 input[type="checkbox"] {
-    width: auto;
-    margin-right: 0.5rem;
+  width: auto;
+  margin-right: var(--spacing-sm);
+  accent-color: var(--color-primary);
 }
 
 input[type="checkbox"] + label {
-    display: inline;
-    font-weight: normal;
+  display: inline;
+  font-weight: normal;
 }
 
 /* Required field indicator */
 input[aria-required="true"],
 select[aria-required="true"],
 textarea[aria-required="true"] {
-    border-left: 3px solid #cc0000;
+  border-left: 3px solid var(--color-error);
 }
 
-/* Submit button */
+/* ============================================
+   SUBMIT BUTTON
+   ============================================ */
+
 button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    background-color: #0066cc;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 1rem;
+  display: block;
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--spacing-md);
 }
 
 button[type="submit"]:hover {
-    background-color: #0052a3;
+  background-color: var(--color-primary-hover);
 }
 
-button[type="submit"]:focus {
-    outline: 2px solid #0066cc;
-    outline-offset: 2px;
-}
-
-/* Required field indicator text */
-.required {
-    color: #cc0000;
-    font-weight: 600;
-}
-
-/* Section notes */
-.section-note {
-    font-size: 0.875rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-.guardian-statement {
-    font-size: 0.875rem;
-    color: #666;
-    margin-top: 1rem;
-    padding: 0.75rem;
-    background-color: #f9f9f9;
-    border-left: 3px solid #0066cc;
-}
-
-/* Checkbox group styling */
-.checkbox-group {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.checkbox-group input[type="checkbox"] {
-    margin-top: 0.25rem;
-    min-width: 20px;
-    min-height: 20px;
-}
-
-.checkbox-group label {
-    display: inline;
-    margin: 0;
-    font-weight: normal;
-}
-
-/* Error states */
-.field-error {
-    border-color: #cc0000 !important;
-    border-left-width: 3px;
-}
-
-.error-message {
-    display: block;
-    color: #cc0000;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
-
-/* Form status messages */
-.form-status {
-    padding: 1rem;
-    border-radius: 4px;
-    margin-top: 1rem;
-    display: none;
-}
-
-.form-status.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.form-status.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-.form-status.info {
-    background-color: #cce5ff;
-    color: #004085;
-    border: 1px solid #b8daff;
-}
-
-/* Discovery form link in success message */
-.discovery-link {
-    display: inline-block;
-    background-color: #0066cc;
-    color: #fff !important;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0.5rem 0;
-}
-
-.discovery-link:hover {
-    background-color: #0052a3;
-}
-
-.discovery-note {
-    display: block;
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
-    opacity: 0.9;
+button[type="submit"]:focus,
+button[type="submit"]:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }
 
 /* Loading state */
 button.loading {
-    opacity: 0.7;
-    cursor: wait;
+  opacity: 0.7;
+  cursor: wait;
 }
 
-/* Athlete identification banner (Discovery Form) */
+/* ============================================
+   TEXT ELEMENTS
+   ============================================ */
+
+/* Required field indicator text */
+.required {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+/* Section notes */
+.section-note {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.guardian-statement {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-md);
+  padding: 0.75rem;
+  background-color: var(--color-bg-muted);
+  border-left: 3px solid var(--color-primary);
+}
+
+/* ============================================
+   CHECKBOX GROUPS
+   ============================================ */
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-top: var(--spacing-xs);
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.checkbox-group label {
+  display: inline;
+  margin: 0;
+  font-weight: normal;
+  color: var(--color-text-main);
+}
+
+/* ============================================
+   ERROR STATES
+   ============================================ */
+
+.field-error {
+  border-color: var(--color-error) !important;
+  border-left-width: 3px;
+}
+
+.error-message {
+  display: block;
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-xs);
+}
+
+/* ============================================
+   FORM STATUS MESSAGES
+   ============================================ */
+
+.form-status {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  margin-top: var(--spacing-md);
+  display: none;
+}
+
+.form-status.success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success-border);
+}
+
+.form-status.error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error-border);
+}
+
+.form-status.info {
+  background-color: var(--color-info-bg);
+  color: var(--color-info);
+  border: 1px solid var(--color-info-border);
+}
+
+/* ============================================
+   DISCOVERY FORM LINK
+   ============================================ */
+
+.discovery-link {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground) !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  margin: var(--spacing-sm) 0;
+}
+
+.discovery-link:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.discovery-note {
+  display: block;
+  font-size: 0.875rem;
+  margin-top: var(--spacing-sm);
+  opacity: 0.9;
+}
+
+/* ============================================
+   ATHLETE BANNER (Discovery Form)
+   ============================================ */
+
 .athlete-banner {
-    background-color: #e8f4f8;
-    border: 1px solid #b8daff;
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+  background-color: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .athlete-banner p {
-    margin: 0;
-    color: #004085;
+  margin: 0;
+  color: var(--color-info);
 }
 
 .athlete-banner strong {
-    color: #0066cc;
+  color: var(--color-primary);
 }
 
-/* Contact info styling (Consent section) */
+/* ============================================
+   CONTACT INFO (Consent section)
+   ============================================ */
+
 .contact-info {
-    font-size: 0.875rem;
-    color: #666;
-    margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-md);
 }
 
 .contact-info a {
-    color: #0066cc;
+  color: var(--color-primary);
 }
 
-/* Textarea styling */
+/* ============================================
+   TEXTAREA
+   ============================================ */
+
 textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
-    resize: vertical;
-    min-height: 60px;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 60px;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-surface);
 }
 
-textarea:focus {
-    outline: 2px solid #0066cc;
-    outline-offset: 2px;
-    border-color: #0066cc;
+textarea:focus,
+textarea:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-color: var(--color-border-focus);
 }
 
 textarea[aria-required="true"] {
-    border-left: 3px solid #cc0000;
+  border-left: 3px solid var(--color-error);
 }
 
-/* Responsive adjustments */
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
 @media (max-width: 480px) {
-    body {
-        padding: 0.5rem;
-    }
+  body {
+    padding: var(--spacing-sm);
+  }
 
-    form {
-        padding: 1rem;
-    }
+  form {
+    padding: var(--spacing-md);
+  }
 
-    fieldset {
-        padding: 0.75rem;
-    }
+  fieldset {
+    padding: 0.75rem;
+  }
 
-    .athlete-banner {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-    }
+  .athlete-banner {
+    margin-left: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+  }
 }
