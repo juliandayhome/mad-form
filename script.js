@@ -16,6 +16,8 @@
     const form = document.getElementById('registration-form');
     const submitButton = form.querySelector('button[type="submit"]');
     const statusDiv = document.getElementById('form-status');
+    const dobField = document.getElementById('athlete-dob');
+    const parentSection = document.querySelectorAll('fieldset')[1]; // Parent/Guardian section
 
     // Validation patterns
     const PATTERNS = {
@@ -174,9 +176,22 @@
     }
 
     /**
+     * Check if athlete is under 16 based on current DoB value
+     */
+    function isAthleteUnder16() {
+        const dobValue = dobField.value;
+        if (!dobValue) return false;
+        const dob = new Date(dobValue);
+        if (isNaN(dob.getTime())) return false;
+        return calculateAge(dob) < 16;
+    }
+
+    /**
      * Collect form data into submission format
      */
     function collectFormData() {
+        const isMinor = isAthleteUnder16();
+
         return {
             athlete: {
                 firstName: document.getElementById('athlete-first-name').value.trim(),
@@ -184,15 +199,16 @@
                 dateOfBirth: document.getElementById('athlete-dob').value,
                 gender: capitalizeFirst(document.getElementById('athlete-gender').value),
                 email: document.getElementById('athlete-email').value.trim() || null,
-                phone: document.getElementById('athlete-phone').value.trim() || null
+                phone: document.getElementById('athlete-phone').value.trim() || null,
+                isMinor: isMinor
             },
-            parent: {
+            parent: isMinor ? {
                 firstName: document.getElementById('parent-first-name').value.trim(),
                 lastName: document.getElementById('parent-last-name').value.trim(),
                 email: document.getElementById('parent-email').value.trim(),
                 phone: document.getElementById('parent-phone').value.trim(),
                 relationship: capitalizeFirst(document.getElementById('parent-relationship').value)
-            },
+            } : null,
             emergency: {
                 name: document.getElementById('emergency-name').value.trim(),
                 phone: document.getElementById('emergency-phone').value.trim()
@@ -211,6 +227,69 @@
     function capitalizeFirst(str) {
         if (!str) return str;
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    /**
+     * Calculate age from date of birth
+     */
+    function calculateAge(dob) {
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    /**
+     * Toggle parent/guardian section visibility based on athlete age
+     */
+    function updateParentSectionVisibility() {
+        const dobValue = dobField.value;
+        const guardianStatement = document.getElementById('guardian-statement');
+        const adultStatement = document.getElementById('adult-statement');
+
+        if (!dobValue) {
+            // No DoB entered yet - hide parent section, show guardian statement by default
+            parentSection.style.display = 'none';
+            setParentFieldsRequired(false);
+            guardianStatement.style.display = 'block';
+            adultStatement.style.display = 'none';
+            return;
+        }
+
+        const dob = new Date(dobValue);
+        if (isNaN(dob.getTime())) {
+            return; // Invalid date, don't change visibility
+        }
+
+        const age = calculateAge(dob);
+        const isUnder16 = age < 16;
+
+        parentSection.style.display = isUnder16 ? 'block' : 'none';
+        setParentFieldsRequired(isUnder16);
+
+        // Toggle consent statements
+        guardianStatement.style.display = isUnder16 ? 'block' : 'none';
+        adultStatement.style.display = isUnder16 ? 'none' : 'block';
+    }
+
+    /**
+     * Set required attribute on parent/guardian fields
+     */
+    function setParentFieldsRequired(isRequired) {
+        const parentFields = parentSection.querySelectorAll('input, select');
+        parentFields.forEach(field => {
+            if (isRequired) {
+                field.setAttribute('required', '');
+                field.setAttribute('aria-required', 'true');
+            } else {
+                field.removeAttribute('required');
+                field.removeAttribute('aria-required');
+                clearError(field); // Clear any validation errors
+            }
+        });
     }
 
     /**
@@ -358,6 +437,12 @@
                 clearError(field);
             }
         });
+
+        // DoB change handler - show/hide parent section based on age
+        dobField.addEventListener('change', updateParentSectionVisibility);
+
+        // Initialize parent section visibility (hidden until DoB entered)
+        updateParentSectionVisibility();
 
         console.log('MAD Registration Form initialized');
     }
