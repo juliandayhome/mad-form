@@ -8,7 +8,7 @@
 
     // Configuration
     const CONFIG = {
-        webhookUrl: 'https://texas-automotive-helmet-track.trycloudflare.com/webhook/mad-form',
+        webhookUrl: 'https://webhook.athleticascent.co.uk/webhook/mad-form',
         submitTimeout: 30000 // 30 seconds
     };
 
